@@ -1,9 +1,9 @@
 pragma solidity 0.5.1;
 contract CoinFlip{
-    mapping(address => uint) public balance;
-    mapping(address => uint) public busy_avail ; // either 0 or 1 o represents free and 1 represents busy
+    mapping(uint => uint) public balance;
+    mapping(uint => uint) public busy_avail ; // either 0 or 1 o represents free and 1 represents busy
     struct userData{
-        address user;
+        uint user;
         uint bet;
         uint amount;
     }
@@ -14,10 +14,9 @@ contract CoinFlip{
     //Things to do when a bet is placed
     //Reduce the balance by bet amount of the player
     //Store the bet, the amount of bet and user in ststuct data type
-    function placeBet(uint amount, uint bet) public {
+    function placeBet(uint amount, uint bet,uint player) public {
        uint flag = 0; 
        uint pos =  0;
-       address player = msg.sender;
        for(uint i=0;i<user_data.length;i++)
        {
            if((user_data[i].user) ==(player))
